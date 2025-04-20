@@ -27,21 +27,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void MoveToTarget(GameObject target)
     {
-        if (target == null)
+        if (_navMeshAgent != null && target != null)
         {
-            Debug.LogWarning("Target es null en MoveToTarget");
-            return;
+            _navMeshAgent.SetDestination(target.transform.position);
         }
-
-        _currentTarget = target;
-
-        Vector3 targetPosition = new Vector3(
-            target.transform.position.x,
-            transform.position.y,
-            target.transform.position.z
-        );
-
-        _navMeshAgent.SetDestination(targetPosition);
     }
     public void MoveToTargetPosition(Vector3 position)
     {

@@ -11,7 +11,6 @@ public class Health : MonoBehaviour
 
     public Entity Entity;
     public Transform AimOffSet;
-    // Start is called before the first frame update
     void Start()
     {
 

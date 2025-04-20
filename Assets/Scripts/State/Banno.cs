@@ -25,17 +25,15 @@ public class Banno : Humano
         if (_banno != null)
         {
             _playerMovement.MoveToTarget(_banno);
-            _DataAgent.LoadWC(); // Inicia recarga de WC
+            _DataAgent.LoadWC();
         }
     }
 
     public override void Execute()
     {
-        // WC se recupera automáticamente (LoadWC)
-        _DataAgent.DiscountEnergy(); // Energy sigue bajando
-        _DataAgent.DiscountSleep();  // Sleep sigue bajando
+        _DataAgent.DiscountEnergy();
+        _DataAgent.DiscountSleep(); 
 
-        // Solo vuelve a Jugar cuando WC esté lleno
         if (_DataAgent.WC.value >= _DataAgent.WC.valueMax)
         {
             _StateMachine.ChangeState(TypeState.Jugar);

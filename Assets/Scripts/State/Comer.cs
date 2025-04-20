@@ -25,17 +25,15 @@ public class Comer : Humano
         if (_comedor != null)
         {
             _playerMovement.MoveToTarget(_comedor);
-            _DataAgent.LoadEnergy(); // Inicia recarga de Energy
+            _DataAgent.LoadEnergy(); 
         }
     }
 
     public override void Execute()
     {
-        // Energy se recupera automáticamente (LoadEnergy)
-        _DataAgent.DiscountSleep(); // Sleep sigue bajando
-        _DataAgent.DiscountWC();    // WC sigue bajando
+        _DataAgent.DiscountSleep(); 
+        _DataAgent.DiscountWC();    
 
-        // Solo vuelve a Jugar cuando Energy esté llena
         if (_DataAgent.Energy.value >= _DataAgent.Energy.valueMax)
         {
             _StateMachine.ChangeState(TypeState.Jugar);

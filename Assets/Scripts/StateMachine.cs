@@ -6,7 +6,7 @@ public class StateMachine : MonoBehaviour
 {
     public State[] states;
     public State currentState = null;
-    public TypeState Startstate = TypeState.Jugar; // Siempre inicia en Jugar
+    public TypeState Startstate = TypeState.Jugar; 
 
     void Start()
     {
@@ -16,7 +16,6 @@ public class StateMachine : MonoBehaviour
 
     public void ChangeState(TypeState newState)
     {
-        // Bloquea cambios si ya está en FollowToy (excepto para salir)
         if (currentState != null && currentState.typestate == TypeState.FollowToy && newState != TypeState.Jugar)
             return;
 
@@ -33,14 +32,11 @@ public class StateMachine : MonoBehaviour
                 currentState = state;
                 currentState.enabled = true;
                 currentState.Enter();
-                Debug.Log($"Cambiado a {newState}");
                 return;
             }
         }
-        Debug.LogError($"Estado {newState} no encontrado");
     }
 
-    // Nuevo método para forzar FollowToy (prioridad absoluta)
     public void ForceFollowToy()
     {
         ChangeState(TypeState.FollowToy);

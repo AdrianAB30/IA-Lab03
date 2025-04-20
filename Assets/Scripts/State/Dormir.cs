@@ -25,24 +25,18 @@ public class Dormir : Humano
         if (_dormitorio != null)
         {
             _playerMovement.MoveToTarget(_dormitorio);
-            _DataAgent.LoadSleep(); // Inicia recarga de Sleep
-        }
-        else
-        {
-            Debug.LogError("No se encontró el dormitorio (tag 'Sleep')");
+            _DataAgent.LoadSleep(); 
         }
     }
 
     public override void Execute()
     {
-        // Sleep se recupera (LoadSleep)
-        _DataAgent.DiscountEnergy(); // Energy baja
-        _DataAgent.DiscountWC();     // WC baja
+        _DataAgent.DiscountEnergy(); 
+        _DataAgent.DiscountWC();     
 
-        // Solo verifica si Sleep está lleno (ignora otras energías)
         if (_DataAgent.Sleep.value >= _DataAgent.Sleep.valueMax)
         {
-            _StateMachine.ChangeState(TypeState.Jugar); // Siempre vuelve a Jugar primero
+            _StateMachine.ChangeState(TypeState.Jugar);
         }
 
         base.Execute();
@@ -50,6 +44,5 @@ public class Dormir : Humano
 
     public override void Exit()
     {
-        // Opcional: Resetear variables si es necesario
     }
 }
